@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html, body{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FDF5D8;
+}
+.card{
+    margin: auto;
+    width: 800px;
+    height: 500px;
+    display: flex;
+    border-radius: 80px;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px #ECE8DA;
+    
+}   
+
+.login{
+    flex: 1;
+    margin-left: 30px;
+    margin-top: 30px;
+    background-color: white;
+}
+
+.login h1{
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.login input{
+    width: 300px;
+    height: 50px;
+    margin-top: 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 2px solid #BEBCBC;
+    background-color: #F3F3F3;
+    padding-left: 10px;
+}
+
+.login button{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    width: 320px;
+    height: 50px;
+    margin-top: 20px;
+    background-color:#FFB800 ;
+    border: 1px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.Register{
+    background-color: #FFB800;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+}
+

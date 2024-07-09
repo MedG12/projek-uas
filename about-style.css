@@ -1,0 +1,27 @@
+
+.about-image {
+    width: 1100px;
+    margin: auto;
+    gap: 50px;
+    display: flex;
+    margin-bottom: 100px;
+}
+
+.about-image img{
+    object-fit: cover;
+    width: 500px;
+    height: 600px;
+}
+
+.col-1{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.col-2{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 60px;
+}
