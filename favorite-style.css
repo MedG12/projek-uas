@@ -1,16 +1,18 @@
 
 .favorite-box{
-    width: 1300px;
+    width: 1000px;
     margin: auto;
+    margin-left: 14%;
     font-family: "Roboto", sans-serif;
 }
 
 .th{
+    margin-top: 30px;
     font-weight: 700;
 
     display: grid;
     background-color: whitesmoke;
-    grid-template-columns: 400px 200px 200px 200px 200px;
+    grid-template-columns: 400px 150px 150px 150px 150px;
     border-radius: 22px 22px 0px 0px;
     padding: 20px 0px;
     margin-bottom: 2px;
@@ -20,17 +22,18 @@
 }
 
 .tr{
-    width: 1300px;
+    width: 1000px;
     margin: 5px auto;
     background-color: whitesmoke;
     display: grid;
-    grid-template-columns: 400px 200px 200px 200px 200px;
+    grid-template-columns: 400px 150px 150px 150px 150px;
     align-items: center;
     text-align: center;
     height: 200px;
 }
 
 .tr h1{
+    font-size: 18px;
     font-weight: 400;
 }
 
@@ -58,7 +61,7 @@
 }
 
 .tr .button button{
-    font-size: 20px;
+    font-size: 16px;
     background-color: #F3C242;
     padding: 0px 20px;
     height: 40px;

@@ -44,7 +44,7 @@ let Default_products = [
     imageUrl : 'asset/cookies-cheese.png',
     title : 'Cheese',
     desc : 'Combining the savory taste of cheese with a hint of sweetness, creating a unique and addictive snack.',
-    stock :  0,
+    stock :  1,
     price : 3000,
     fav : false
   },
@@ -62,7 +62,7 @@ let Default_products = [
     imageUrl : 'asset/Risoles-mayonaise.png',
     title : 'Mayonaise',
     desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
-    stock :  0,
+    stock :  2,
     price : 3000,
     fav : false
   },
