@@ -86,6 +86,13 @@ let Default_products = [
   }
 ]
 
+let users = [
+  {
+    username:"Muhammad",
+    password:"admin"
+  }
+]
+localStorage.setItem("users",JSON.stringify(users));
 localStorage.setItem("products", JSON.stringify(Default_products));
 
 let products = JSON.parse(localStorage.getItem("products"));
@@ -102,7 +109,7 @@ function addCart(item){
 }
 //end ad to cart
 
-//Adding item to favorite localsotrage
+//Adding favorite to localsotrage
 function like(title){
     products.forEach(product=>{
       if(product.title== title){
@@ -111,8 +118,7 @@ function like(title){
       localStorage.setItem("products",JSON.stringify(products));
     })
 }
-
-//end like product
+//end adding favorite
 
 // Start load products
 let productsContent = "";
@@ -137,7 +143,21 @@ function showProducts(){
     containerProducts.innerHTML = productsContent;
 }
 document.onload = showProducts();
+// end load products
 
+
+function isLogin(){
+    if(document.cookie == undefined || document.cookie == "" || document.cookie == null){
+      return false;
+    }
+    else{
+      console.log((document.cookie.length))
+      return true;
+    }
+}
+
+
+// like function---> addd to favorite
 const likeBtn = document.querySelectorAll('.fa-heart');
 for(let i = 1; i<likeBtn.length;i++){
   
@@ -147,11 +167,34 @@ for(let i = 1; i<likeBtn.length;i++){
       this.classList.remove('liked');
     }
     else{
-      products[i-1].fav =  true;
-      this.classList.add("liked")
+      if(isLogin()){
+        products[i-1].fav =  true;
+        this.classList.add("liked");
+        console.log('test');
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Add to Favorite"
+          });
+      }else{
+        window.location.href = "login.html";
+      }
+
     };
     localStorage.setItem("products", JSON.stringify(products)); 
   });
 }
-// end load products
+//end like function
+
+
 
