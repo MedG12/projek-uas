@@ -14,6 +14,7 @@ function stockStatus(title){
 
 let content = "";
 const container = document.querySelector(".favorite-content")
+
 function loadFavorite(){
     favorites.forEach(favorite=>{
         content += '<div class="tr">';
@@ -23,7 +24,7 @@ function loadFavorite(){
         content += `</div>`
         content += `<h1>Rp${favorite.price}</h1>`
         content += `<h1>${stockStatus(favorite.title)}</>`
-        content += `<h1>${favorite.date}</h1>`
+        content += `<h1>${new Date().toJSON().slice(0, 10)}</h1>`
         content += ` <div class="button">`;
         content += `<button>Add To Cart </button>`
         content += `</div> </div>`;

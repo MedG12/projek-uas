@@ -1,11 +1,20 @@
 const cookie= document.cookie;
-//check if user login or not
-function isLogin(){
+const username= cookie.replace("username=","")
+const getUsers =  JSON.parse(localStorage.getItem("users"));
+
+//check if user login or not as a require role
+function isLogin(role){
+  const user = getUsers.find(user=>user.username.toLowerCase() == username.toLowerCase())
   if(cookie == undefined || cookie == "" || cookie == null ||  cookie == "username="){
     return false;
   }
   else{
-    return true;
+    if(user.role==role){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
 //end login check
@@ -17,8 +26,6 @@ function logout(){
       confirmButton: "sweet-btn confirm",
       cancelButton : "sweet-btn cancel"
     },
-
-    // cancelButtonColor : "white",
     buttonsStyling: false,
 
   });
@@ -43,8 +50,7 @@ const usernameBox = document.querySelector('.username');
 const user = document.querySelector('.user');
 const loginUser = document.querySelector('.dropdown');
 
-if(isLogin()){
-  let username= cookie.replace("username=","")
+if(isLogin("user")){
   usernameBox.innerHTML = username;
   user.style.display = "none";
   loginUser.style.display = "block"
