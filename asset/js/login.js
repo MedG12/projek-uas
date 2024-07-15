@@ -13,6 +13,7 @@ function validate(){
     const user = users.find(user =>user.username.toLowerCase() ==  username.toLowerCase().trim());
     if(user != null || user != undefined){
       if(password == user.password){
+        console.log('masuk')
         setCookie("username",username,3);
         window.location.href = "index.html"
       }
