@@ -15,7 +15,12 @@ function validate(){
       if(password == user.password){
         console.log('masuk')
         setCookie("username",username,3);
-        window.location.href = "index.html"
+        if(user.role=="admin"){
+          window.location.href = "admin.html"
+        }else if(user.role=="user"){
+          window.location.href = "index.html"
+        }
+        
       }
     }else{
 

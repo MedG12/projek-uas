@@ -58,7 +58,7 @@ function showProducts(){
     products.forEach(product => {
         productsContent += `<div class="card-product">`;
         productsContent += `<div class="photo">`;
-        productsContent += `<i onclick="" class="fa-solid fa-heart ${isLogin()? product.fav== true? "liked":"" :""}"></i>`;
+        productsContent += `<i onclick="" class="fa-solid fa-heart ${isLogin("user")? product.fav== true? "liked":"" :""}"></i>`;
         productsContent += `<img src="${product.imageUrl}" alt="">`;
         productsContent += `</div>`;
         productsContent += `<div class="desc-product">`;
@@ -82,7 +82,7 @@ for(let i = 0; i<likeBtn.length;i++){
       this.classList.remove('liked');
     }
     else{
-      if(isLogin()){
+      if(isLogin("user")){
         products[i-1].fav =  true;
         this.classList.add("liked");
         const Toast = Swal.mixin({
