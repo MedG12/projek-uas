@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="about-style.css">
+    <link rel="stylesheet" href="admin-style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
-   
 </head>
 <body>
     <header>
         <h1>Munchies</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="about.html">About us</a> </li>
+                <li><a href="admin.html">Home</a></li>
                 <li><a href=""></a></li>
             </ul>
             <ul>
@@ -58,44 +54,35 @@
             </ul>
         </nav>
     </header>
-    <section>
+    <section  id="products" >
         <div class="title">
             <hr>
-            <h1>About us</h1>
+            <h1>Our products</h1>
         </div>
         <div class="content-text">
-            <h1>
-                <span style="font-weight: 700;font-size: 48px;">Munchies</span> is a new Indonesian-inspired boutique bakery and pastry shop
-            </h1>
-            <p>Our products have been created to have high quality and taste. Using premium natural ingredients with traditional recipes and strict quality control, our products are wholesomely nutritious and have consistent quality.</p>
-        </div>    
-    </section>
-
-    <section>
-        <div class="title">
-            <hr>
-            <h1>Our Philosophy</h1>
+            <h1 style="flex: 1.2">Indulge yourself with our premium Snacks.</h1>
+            <p></p>
         </div>
-        <div class="content-text">
-            <h1>
-                High-quality, refined, and delicious Snacks
-            </h1>
-            <p>We have taken into account all of these key factors as we have developed our products with high quality, taste, and presentation in mind. As we strive to build a reputation as a leader in quality, we have invested in skilled human resources, synergistically moving together with highly automated manufacturing equipment.</p>
-        </div>    
-    </section>
-    
-    <section class="about-image">
-        <div class="col-1">
-            <img src="asset/about-asset1.jpg" alt="">
-            <img src="asset/about-asset2.png" alt="">
-        </div>
-        <div class="col-2">
-            <img src="asset/about-asset3.jpg" alt="">
-            <img src="asset/about-asset4.jpeg" alt="">
+        <div class="products">
+            <div class="card-product">
+                <!-- <div class="out-of-stock">
+                    salah
+                </div> -->
+                <div class="photo">
+                    <i class="fa-solid fa-heart"></i>
+                    <img src="asset/cookies-chocolate.png" alt="">
+                </div>
+                
+                <div class="desc-product">
+                    <h1>Chocolate</h1>
+                    <p>Rich and indulgent, offering a deep cocoa flavor that's perfect for satisfying sweet cravings.</p>
+                    <button id="button-addCart">Add To cart</button>  
+                </div>
+            </div>
         </div>
     </section>
     <script src="sweetalert2@11.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
-    <script src="script.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>

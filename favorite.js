@@ -1,4 +1,3 @@
-const products = JSON.parse(localStorage.getItem("products"));
 let favorites= [];
 
 products.forEach(product=>{
