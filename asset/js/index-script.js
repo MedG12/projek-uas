@@ -27,13 +27,19 @@ setInterval(function(){
 
 
 //add to cart function
-function addCart(item){
-    let product_cart = products.find(product=>product.title == item);
-    cart.push(product_cart);
-    if(product_cart.stock ==0 ){
-      document.querySelector(".popup").style.display = 'block';
-      document.querySelector(".overlay").style.opacity = '1';
-    }
+function addCart(itemTitle) {
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const productToAdd = products.find(product => product.title === itemTitle);
+
+  if (productToAdd) {
+    cart.push(productToAdd);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${itemTitle} was added to the cart!`);
+  } else {
+    alert("Product not found!");
+  }
 }
 //end ad to cart
 
