@@ -127,10 +127,17 @@ editbtn.forEach((btn,index)=>{
               focusConfirm : false,
               padding: "30px",
               html :
-                `<input class = "product-title" placeholder="Title" value="${products[index].title}"> <br>
-                 <input class = "product-desc" placeholder="Description" value="${products[index].desc}"> <br>
-                 <input class = "product-img" placeholder="Image" value="${products[index].imageUrl}"> <br> 
-                 <input class = "product-stock" placeholder="Stock" value="${products[index].stock}"> 
+                `
+                <label>Title</label>
+                <input class = "product-title" value="${products[index].title}"> <br>
+                <label>Description</label>
+                <input class = "product-desc" value="${products[index].desc}"> <br>
+                <label>ImageUrl</label> 
+                <input class = "product-img" value="${products[index].imageUrl}"> <br> 
+                <label>Price</label>
+                <input class = "product-price" value="${products[index].price}"> <br> 
+                <label>Stock</label>
+                <input class = "product-stock" value="${products[index].stock}"> 
                 `
             }).then((result)=>{
               console.log(products[index]);
@@ -138,11 +145,13 @@ editbtn.forEach((btn,index)=>{
               let desc  = document.querySelector('.product-desc');
               let img  = document.querySelector('.product-img');
               let stock  = document.querySelector('.product-stock');
+              let price  = document.querySelector('.product-price');
               if(result.isConfirmed){
                 products[index].title = title.value;
                 products[index].desc = desc.value;
                 products[index].imageUrl = img.value;
                 products[index].stock = stock.value;
+                products[index].price = price.value;
                 localStorage.setItem("products",JSON.stringify(products));
                 location.reload();
               }
