@@ -53,13 +53,46 @@ header nav ul li a{
     justify-content: center;
     align-items: center;
 }
-
-/* .fa-solid{
-    font-size: 30px;
-    margin-right: 10px;
-} */
-
 /* end navigation bar */
+
+/* dropdown section */
+.dropdown{
+    position: relative;
+}
+
+.dropdown .username-box{
+    width: 200px;
+}
+.dropdown .dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 90%;
+    margin-left: 10%;
+    margin-top: 10px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown .dropdown-content a{
+    padding: 10px;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    justify-content: flex-start;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown .dropdown-content i{
+    margin-left: auto;
+    margin-right: 18px;
+    font-size:15px;
+    
+}
+/* end dropdown section */
+
+
 
 /* start pop up section */
 .popup{

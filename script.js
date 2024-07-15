@@ -1,8 +1,45 @@
-const btn = document.querySelectorAll(".radio-btn");  
-const image = document.querySelectorAll(".slide"); 
+const cookie= document.cookie;
+//check if user login or not
+function isLogin(){
+  if(cookie == undefined || cookie == "" || cookie == null ||  cookie == "username="){
+    return false;
+  }
+  else{
+    console.log((document.cookie.length))
+    return true;
+  }
+}
+//end login check
 
+
+//logging out user
+function logout(){
+  console.log('masuks')
+  document.cookie = "username=";
+  location.reload();
+}
+
+
+// display username login
+const usernameBox = document.querySelector('.username');
+const user = document.querySelector('.user');
+const loginUser = document.querySelector('.dropdown');
+
+
+if(isLogin()){
+  let username= cookie.replace("username=","")
+  usernameBox.innerHTML = username;
+  user.style.display = "none";
+  loginUser.style.display = "block"
+}else{
+  user.style.display = "block";
+  loginUser.style.display = "none"
+}
+//end display username
 
 //sliding image secara manual
+const btn = document.querySelectorAll(".radio-btn");  
+const image = document.querySelectorAll(".slide"); 
 function currentSlide(number){ 
   if(number == 0){
     btn[1].classList.remove("active-btn");
@@ -145,23 +182,12 @@ function showProducts(){
 document.onload = showProducts();
 // end load products
 
-
-function isLogin(){
-    if(document.cookie == undefined || document.cookie == "" || document.cookie == null){
-      return false;
-    }
-    else{
-      console.log((document.cookie.length))
-      return true;
-    }
-}
-
-
 // like function---> addd to favorite
 const likeBtn = document.querySelectorAll('.fa-heart');
-for(let i = 1; i<likeBtn.length;i++){
+for(let i = 0; i<likeBtn.length;i++){
   
   likeBtn[i].addEventListener('click',function(){
+    console.log('waduh')
     if(this.className.includes('liked')){
       products[i-1].fav =  false;
       this.classList.remove('liked');
@@ -197,4 +223,27 @@ for(let i = 1; i<likeBtn.length;i++){
 //end like function
 
 
+
+const dropbtn = document.querySelectorAll(".dropbtn");
+const myContent = document.querySelector(".dropdown-content");
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  console.log(event.target);
+  if (!event.target.matches('.dropbtn')) {
+    myContent.style.display = "none";
+  }
+}
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+dropbtn.forEach(btn=>{
+  btn.addEventListener('click',function(){
+    
+    if(myContent.style.display == "block"){
+      myContent.style.display = "none";
+    }else{
+      myContent.style.display = "block";
+    };
+  });
+});
 
