@@ -28,17 +28,41 @@ setInterval(function(){
 
 //add to cart function
 function addCart(itemTitle) {
-  let products = JSON.parse(localStorage.getItem("products")) || [];
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+  let carts = JSON.parse(localStorage.getItem("cart")) || [];
   const productToAdd = products.find(product => product.title === itemTitle);
-
-  if (productToAdd) {
-    cart.push(productToAdd);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${itemTitle} was added to the cart!`);
-  } else {
-    alert("Product not found!");
+  
+  if (isLogin("user")) {
+    //check if products exist
+    if (productToAdd){
+      let cart = carts.find(cart => cart.title == itemTitle)
+      //check if item is already on cart table
+      if(cart){
+        cart.quantity +=1;
+      }else{
+        productToAdd.quantity = 1;
+        carts.push(productToAdd);
+      }
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+        Toast.fire({
+          icon: "success",
+          title: `Adding ${itemTitle} to Cart`
+        });
+      localStorage.setItem("cart", JSON.stringify(carts));
+    }else{
+      alert("Product not found!");
+    }
+  }else {
+    location.href= "login.html"
   }
 }
 //end ad to cart

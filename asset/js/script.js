@@ -1,3 +1,79 @@
+let users = [
+  {
+    username:"Muhammad",
+    password:"user",
+    role : "user"
+  },
+  {
+    username:"ady",
+    password:"admin",
+    role : "admin"
+  }
+]
+localStorage.setItem("users",JSON.stringify(users));
+
+let Default_products = [
+  {
+    category : 'cookies',
+    imageUrl : 'asset/cookies-chocolate.png',
+    title : 'Chocolate',
+    desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
+    stock :  0,
+    price : 3000,
+    fav : false
+  },
+  {
+    category : 'cookies',
+    imageUrl : 'asset/cookies-cheese.png',
+    title : 'Cheese',
+    desc : 'Combining the savory taste of cheese with a hint of sweetness, creating a unique and addictive snack.',
+    stock :  1,
+    price : 3000,
+    fav : false
+  },
+  {
+    category : 'cookies',
+    imageUrl : 'asset/cookies-matcha.png',
+    title : 'Matcha',
+    desc : 'Features the distinct, earthy flavor of green tea, providing a subtly sweet and slightly bitter taste experience.',
+    stock :  0,
+    price : 3000,
+    fav : false
+  },
+  {
+    category : 'Risoles',
+    imageUrl : 'asset/Risoles-mayonaise.png',
+    title : 'Mayonaise',
+    desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
+    stock :  2,
+    price : 3000,
+    fav : false
+  },
+  {
+    category : 'Risoles',
+    imageUrl : 'asset/risoles-ragout.png',
+    title : 'Ragout',
+    desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
+    stock :  0,
+    price : 3000,
+    fav : false
+  },
+  {
+    category : 'Risoles',
+    imageUrl : 'asset/risoles-spicy.png',
+    title : 'Spicy',
+    desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
+    stock :  0,
+    price : 3000,
+    fav : false
+  }
+]
+const products = JSON.parse(localStorage.getItem("products"));
+
+localStorage.setItem("products", JSON.stringify(Default_products));
+
+
+
 const cookie= document.cookie;
 const username= cookie.replace("username=","")
 const getUsers =  JSON.parse(localStorage.getItem("users"));
@@ -81,74 +157,4 @@ dropbtn.forEach(btn=>{
   });
 });
 
-let Default_products = [
-  {
-    category : 'cookies',
-    imageUrl : 'asset/cookies-chocolate.png',
-    title : 'Chocolate',
-    desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
-    stock :  0,
-    price : 3000,
-    fav : false
-  },
-  {
-    category : 'cookies',
-    imageUrl : 'asset/cookies-cheese.png',
-    title : 'Cheese',
-    desc : 'Combining the savory taste of cheese with a hint of sweetness, creating a unique and addictive snack.',
-    stock :  1,
-    price : 3000,
-    fav : false
-  },
-  {
-    category : 'cookies',
-    imageUrl : 'asset/cookies-matcha.png',
-    title : 'Matcha',
-    desc : 'Features the distinct, earthy flavor of green tea, providing a subtly sweet and slightly bitter taste experience.',
-    stock :  0,
-    price : 3000,
-    fav : false
-  },
-  {
-    category : 'Risoles',
-    imageUrl : 'asset/Risoles-mayonaise.png',
-    title : 'Mayonaise',
-    desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
-    stock :  2,
-    price : 3000,
-    fav : false
-  },
-  {
-    category : 'Risoles',
-    imageUrl : 'asset/risoles-ragout.png',
-    title : 'Ragout',
-    desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
-    stock :  0,
-    price : 3000,
-    fav : false
-  },
-  {
-    category : 'Risoles',
-    imageUrl : 'asset/risoles-spicy.png',
-    title : 'Spicy',
-    desc : 'Rich and indulgent, offering a deep cocoa flavor thats perfect for satisfying sweet cravings.',
-    stock :  0,
-    price : 3000,
-    fav : false
-  }
-]
-const products = JSON.parse(localStorage.getItem("products"));
-let users = [
-  {
-    username:"Muhammad",
-    password:"user",
-    role : "user"
-  },
-  {
-    username:"ady",
-    password:"admin",
-    role : "admin"
-  }
-]
-localStorage.setItem("users",JSON.stringify(users));
-localStorage.setItem("products", JSON.stringify(Default_products));
+
