@@ -1,101 +1,101 @@
-
 const carts = JSON.parse(localStorage.getItem('cart')) || [];
 
-// document.addEventListener('DOMContentLoaded', ready);
 function populateCart() {
     const cartItemsContainer = document.querySelector('.cart-content');
     let cartContent = "";
-    carts.forEach(item => {
+    carts.forEach((item, index) => {
         cartContent += `
-                <div class="tr">
-                    <div class="products">
-                        <input type="checkbox" class="item-checkbox">
-                        <img src="${item.imageUrl}" alt="">
-                        <div>
-                            <h1>Risoles</h1>
-                            <h3 class="item-title">${item.title}</h3>
-                        </div>
-                    </div>
-                    <div class="item-detail">
-                        <h1 class="price">
-                            Rp${item.price}
-                        </h1>
-                        <div class="counter">
-                            <i class="fa-solid fa-minus"></i>
-                            <h1 class="quantity">${item.quantity}</h1>
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
+            <div class="tr cart-row">
+                <div class="products">
+                    <input type="checkbox" class="item-checkbox" data-index="${index}">
+                    <img src="${item.imageUrl}" alt="">
+                    <div>
+                        <h1>Risoles</h1>
+                        <h3 class="item-title">${item.title}</h3>
+                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-trash" data-index="${index}"></i>
                     </div>
                 </div>
+                <div class="item-detail">
+                    <h1 class="price cart-price">
+                        Rp${item.price}
+                    </h1>
+                    <div class="counter">
+                        <i class="fa-solid fa-minus"></i>
+                        <h1 class="quantity cart-quantity-input">${item.quantity}</h1>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+            </div>
         `;
     });
     cartItemsContainer.innerHTML = cartContent;
+
+    // Call the function to add event listeners to newly created elements
+    addEventListeners();
 }
-document.onload = populateCart();
 
-const minusBtn = document.querySelectorAll('.fa-minus');
-const plusBtn = document.querySelectorAll('.fa-plus');
-let displayValues = document.querySelectorAll('.quantity');
-const checkboxItem = document.querySelectorAll('.item-checkbox')
-const itemTitle = document.querySelectorAll(".item-title");
-let cartTotalPrice = document.querySelector('.cart-total-price');
-const trashBtn = document.querySelectorAll('.fa-trash-can');
+function addEventListeners() {
+    const minusBtn = document.querySelectorAll('.fa-minus');
+    const plusBtn = document.querySelectorAll('.fa-plus');
+    let displayValues = document.querySelectorAll('.quantity');
+    const checkboxItem = document.querySelectorAll('.item-checkbox');
+    const itemTitle = document.querySelectorAll(".item-title");
+    let cartTotalPrice = document.querySelector('.cart-total-price');
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const purchase = document.querySelector('.btn-purchase');
+    const trashBtn = document.querySelectorAll('.fa-trash');
 
-
-const selectAllCheckbox = document.getElementById('selectAll');
-
-
-
-displayValues.forEach((displayValue,index)=>{
-    let item = carts.find(cart => cart.title == itemTitle[index].textContent)
-    selectAllCheckbox.addEventListener('click', () => {
-        if(selectAllCheckbox.checked==true){
-            checkboxItem.forEach(checkbox => {
-                checkbox.checked = true; 
-            });
-            cartTotalPrice.textContent = eval(`${item.price}*${displayValue.textContent}+${cartTotalPrice.textContent.replace("Rp","")}`);
-        }else{
-            checkboxItem.forEach(checkbox => {
-                checkbox.checked = false;  
-            });
-        }
-    });
-    checkboxItem[index].addEventListener('click', function(){
-        if(checkboxItem[index].checked == true){
-            cartTotalPrice.textContent = eval(`${item.price}*${displayValue.textContent}+${cartTotalPrice.textContent.replace("Rp","")}`);
-        }else{
-            cartTotalPrice.textContent = eval(`${cartTotalPrice.textContent.replace("Rp","")} - ${item.price}*${displayValue.textContent}`);
-        }
-    })
-    minusBtn[index].addEventListener('click',function(){
-        displayValue.textContent = parseInt(displayValue.textContent)-1;
-        if(checkboxItem[index].checked==true){
-            console.log("masuk");
-            if(parseInt(displayValue.textContent)>0){
-                cartTotalPrice.textContent  = eval(`${cartTotalPrice.textContent}-${item.price}`)
+    displayValues.forEach((displayValue, index) => {
+        let item = carts.find(cart => cart.title === itemTitle[index].textContent);
+        selectAllCheckbox.addEventListener('click', () => {
+            if (selectAllCheckbox.checked == true) {
+                checkboxItem.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+                updateCartTotal();
+            } else {
+                checkboxItem.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                updateCartTotal();
             }
-        }
-
-    });
-    plusBtn[index].addEventListener('click',function(){
-        displayValue.textContent = parseInt(displayValue.textContent)+1;
-        if(checkboxItem[index].checked==true){
-            if(parseInt(displayValue.textContent)>0){
-                cartTotalPrice.textContent  = eval(`${cartTotalPrice.textContent}+${item.price}`)
+        });
+        checkboxItem[index].addEventListener('click', function () {
+            updateCartTotal();
+        });
+        minusBtn[index].addEventListener('click', function () {
+            displayValue.textContent = parseInt(displayValue.textContent) - 1;
+            if (parseInt(displayValue.textContent) <= 0) {
+                displayValue.textContent = 0;
             }
-        } 
-     
+            if (checkboxItem[index].checked == true) {
+                updateCartTotal();
+            }
+        });
+        plusBtn[index].addEventListener('click', function () {
+            displayValue.textContent = parseInt(displayValue.textContent) + 1;
+            if (checkboxItem[index].checked == true) {
+                updateCartTotal();
+            }
+        });
+
+        trashBtn[index].addEventListener('click', function () {
+            removeCartItem(index);
+        });
     });
-    // trashBtn[index].addEventListener('click',function(){
-    //     console.log(carts)
-    //     carts.splice(index,1);
-    //     localStorage.setItem("cart",JSON.stringify("carts"))
-    //     console.log(carts)``
-    // })
-// }
 
-})
+    purchase.addEventListener('click', function () {
+        purchaseClicked();
+    });
+}
 
+function removeCartItem(index) {
+    carts.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(carts));
+    populateCart();
+    updateCartTotal();
+}
 
 function updateCartTotal() {
     let total = 0;
@@ -103,22 +103,38 @@ function updateCartTotal() {
     cartRows.forEach(row => {
         const checkbox = row.querySelector('.item-checkbox');
         if (checkbox.checked) {
-            const price = parseFloat(row.querySelector('.cart-price').textContent);
-            const quantity = parseInt(row.querySelector('.cart-quantity-input').value);
+            const price = parseFloat(row.querySelector('.cart-price').textContent.replace('Rp', ''));
+            const quantity = parseInt(row.querySelector('.cart-quantity-input').textContent);
             total += price * quantity;
         }
     });
-
     document.querySelector('.cart-total-price').textContent = `Rp ${total}`;
 }
 
-// function purchaseClicked() {
-//     alert('Thank you for your purchase!!!');
-//     const cartItemsContainer = document.querySelector('.cart-items');
-//     cartItemsContainer.innerHTML = ''; // Clear all items
+function purchaseClicked() {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+        Toast.fire({
+          icon: "success",
+          title: `Thank you for your purchase!  `
+        });
+    // Clear the carts array and update local storage
+    carts.length = 0;
+    localStorage.setItem('cart', JSON.stringify(carts));
+    // Clear the cart items from the UI
+    populateCart();
+    // Reset the total price
+    document.querySelector('.cart-total-price').textContent = 'Rp 0';
+}
 
-//     cart.length = 0; // Clear cart array
-//     updateCartTotal();
-//     localStorage.setItem('cart', JSON.stringify(cart)); // Update local storage
-// }
-// }
+// Populate the cart when the document is loaded
+window.onload = populateCart;
